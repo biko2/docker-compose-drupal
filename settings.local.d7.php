@@ -2,8 +2,8 @@
 /**
  * Drupal 7 **
  * Este es un fichero de configuración para el entorno de desarrollo de ejemplo.
- * Es recomendable copiarlo a sites/default y reemplazar las variables que necesitemos
- * con los valores de nuestro proyecto.
+ * Es recomendable copiarlo a sites/default, renombrarlo a setttings.local.php y reemplazar 
+ * las variables que necesitemos con los valores de nuestro proyecto.
  *
  * Hay que tener en el settings.php de drupal el siguiente snippet
  *
