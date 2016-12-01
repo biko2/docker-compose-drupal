@@ -5,6 +5,11 @@
  * Es recomendable copiarlo a sites/default y reemplazar las variables que necesitemos
  * con los valores de nuestro proyecto.
  *
+ * Hay que tener en el settings.php de drupal el siguiente snippet
+ *
+ * if (file_exists(dirname(__FILE__).'/settings.local.php')) {
+ *   include(dirname(__FILE__).'/settings.local.php');
+ * }
  **/
 
 //Por si queremos sobreescribir memoria y tiempo de ejecución
