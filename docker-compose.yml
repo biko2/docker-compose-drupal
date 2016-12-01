@@ -1,0 +1,67 @@
+version: '2'
+services:
+  mysql:
+  # https://github.com/docker-library/docs/blob/master/mysql/README.md
+    image: mysql/mysql-server:${MYSQL_VERSION}
+    container_name: ${PROJECT_NAME}_mysql_1
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # mysql access root/root
+      MYSQL_DATABASE: ${MYSQL_DATABASE} #Customize your database name
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    #volumes:
+    #  - ./mysql:/etc/my.cnf.d/
+    ports:
+      - "3306:3306"
+  redis:
+    image: redis:${REDIS_VERSION}
+    container_name: ${PROJECT_NAME}_redis_1
+    ports:
+      - "6379:6379"
+  #solr:
+  #  image: solr:5.3
+  #  container_name: ${PROJECT_NAME}_solr_1
+  #  ports:
+  #    - "8983:8983"
+  mail:
+    # https://hub.docker.com/r/mailhog/mailhog/
+    image: mailhog/mailhog
+    container_name: ${PROJECT_NAME}_mail_1
+    ports:
+     - "1025:1025"
+     - "${MAILHOG_PORT}:8025"
+  #varnish:
+  #  image: biko2/docker-varnish:4.0
+  #  ports:
+  #   - "80:80"
+  #    - "6082:6082"
+  #  volumes:
+  #    - ./config/varnish/drupal-base.vcl:/etc/varnish/default.vcl
+  #  # environment:
+  #    # - VARNISH_PORT=80
+  #    # - VARNISH_MEMORY=500M
+  #    # Next values only works with default default.vcl file.
+  #    # - VARNISH_BACKEND_IP=web
+  #    # - VARNISH_BACKEND_PORT=80     
+  web:
+    image: biko2/apache-php:${PHP_VERSION}
+    container_name: ${PROJECT_NAME}_web_1
+    #image: biko2/apache-php:5.6 ##Fallback, por si echamos atrás la versión de php
+    depends_on:
+      - mysql
+      - mail
+      - redis
+    ports:
+     - "${WEB_PORT}:80"
+     - "443:443"
+     - "2222:22"
+    volumes:
+      - ./vhosts:/etc/apache2/sites-enabled
+      - ${WEB_ROOT}:/var/www/html
+     #- ~/.drush:/root/.drush ## drush config
+     #- ~/.ssh:/root/.ssh ## ssh config
+    links:
+     - mysql
+     - mail
+     - redis
+   # - solr
