@@ -20,6 +20,8 @@ services:
       - "6379:6379"
   pma:
     image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
     environment:
       - PMA_ARBITRARY=1
     ports:
