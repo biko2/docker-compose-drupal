@@ -36,7 +36,7 @@ $conf['page_cache_maximum_age'] = 0;
 /**
  * Devel
  **/
-$conf['stage_file_proxy_origin'] = "http://isdi.education/";
+$conf['stage_file_proxy_origin'] = "http://files.tu_proyecto.com/";
 $conf['theme_debug'] = TRUE; //activo theme_debug
 
 /**
