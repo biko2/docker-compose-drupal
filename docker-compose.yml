@@ -8,8 +8,6 @@ services:
       MYSQL_DATABASE: ${COMPOSE_PROJECT_NAME} #Customize your database name
       MYSQL_USER: ${COMPOSE_PROJECT_NAME}
       MYSQL_PASSWORD: ${COMPOSE_PROJECT_NAME}
-    volumes:
-      - /var/lib/mysql
     #volumes:
     #  - ./mysql:/etc/my.cnf.d/
     ports:
