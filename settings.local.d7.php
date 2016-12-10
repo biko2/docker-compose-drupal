@@ -18,10 +18,10 @@
 
 $databases['default']['default'] = array(
   'driver' => 'mysql',
-  'database' => 'drupal',           // MYSQL_DATABASE
-  'username' => 'drupal',           // MYSQL_USER
-  'password' => 'drupal',           // MYSQL_PASSWORD
-  'host' => 'tu_proyecto_mysql_1',  //Corresponde a ${PROJECT_NAME}_mysql_1
+  'database' => 'tu_proyecto',           // MYSQL_DATABASE
+  'username' => 'tu_proyecto',           // MYSQL_USER
+  'password' => 'tu_proyecto',           // MYSQL_PASSWORD
+  'host' => 'tuproyecto_mysql_1',  // Corresponde a ${COMPOSE_PROJECT_NAME}_mysql_1 (sin guiones en "tu_proyecto")
 );
 /**
  * Desactivamos cacheos y CDN
@@ -43,7 +43,7 @@ $conf['theme_debug'] = TRUE; //activo theme_debug
  * Configuración de caché REDIS (por defecto)
  **/
 $conf['redis_client_interface'] = 'PhpRedis'; // Can be "Predis".
-$conf['redis_client_host']      = 'tu_proyecto_redis_1';  // ${PROJECT_NAME}_redis_1
+$conf['redis_client_host']      = 'tuproyecto_redis_1';  // ${COMPOSE_PROJECT_NAME}_redis_1 (sin guiones en "tu_proyecto")
 $conf['lock_inc']               = 'sites/all/modules/contrib/redis/redis.lock.inc';
 $conf['path_inc']               = 'sites/all/modules/contrib/redis/redis.path.inc';
 $conf['cache_backends'][]       = 'sites/all/modules/contrib/redis/redis.autoload.inc';
