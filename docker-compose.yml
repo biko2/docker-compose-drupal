@@ -5,9 +5,11 @@ services:
     image: mysql/mysql-server:${MYSQL_VERSION}
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # mysql access root/root
-      MYSQL_DATABASE: ${MYSQL_DATABASE} #Customize your database name
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${COMPOSE_PROJECT_NAME} #Customize your database name
+      MYSQL_USER: ${COMPOSE_PROJECT_NAME}
+      MYSQL_PASSWORD: ${COMPOSE_PROJECT_NAME}
+    volumes:
+      - /var/lib/mysql
     #volumes:
     #  - ./mysql:/etc/my.cnf.d/
     ports:
@@ -20,8 +22,12 @@ services:
     image: phpmyadmin/phpmyadmin
     depends_on:
       - mysql
+    links:
+      - mysql
     environment:
-      - PMA_ARBITRARY=1
+        PMA_HOST: mysql
+        PMA_USER: ${COMPOSE_PROJECT_NAME}
+        PMA_PASSWORD: ${COMPOSE_PROJECT_NAME}
     ports:
       - ${PHPMYADMIN_PORT}:80
   #solr:
