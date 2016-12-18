@@ -8,6 +8,8 @@ services:
       MYSQL_DATABASE: ${COMPOSE_PROJECT_NAME} #Customize your database name
       MYSQL_USER: ${COMPOSE_PROJECT_NAME}
       MYSQL_PASSWORD: ${COMPOSE_PROJECT_NAME}
+    volumes:
+      - ${MYSQL_DATA_DIR}:/var/lib/mysql
     #volumes:
     #  - ./mysql:/etc/my.cnf.d/
     ports:
@@ -72,3 +74,15 @@ services:
      - mail
      - redis
    # - solr
+#  gulp:
+#      build:
+#        context: ./gulp/
+#        # Environment variables
+#        args:
+#          - USER
+#          - USER_ID
+#      ports:
+#          - 8082:9000
+#      volumes:
+#          - .:/var/www/html
+#      working_dir: /var/www/html/web/themes/custom/tema-base
