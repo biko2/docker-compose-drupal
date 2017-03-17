@@ -2,7 +2,7 @@
 /**
  * Drupal 7 **
  * Este es un fichero de configuración para el entorno de desarrollo de ejemplo.
- * Es recomendable copiarlo a sites/default, renombrarlo a setttings.local.php y reemplazar 
+ * Es recomendable copiarlo a sites/default, renombrarlo a setttings.local.php y reemplazar
  * las variables que necesitemos con los valores de nuestro proyecto.
  *
  * Hay que tener en el settings.php de drupal el siguiente snippet
@@ -21,7 +21,7 @@ $databases['default']['default'] = array(
   'database' => 'tu_proyecto',           // MYSQL_DATABASE
   'username' => 'tu_proyecto',           // MYSQL_USER
   'password' => 'tu_proyecto',           // MYSQL_PASSWORD
-  'host' => 'tuproyecto_mysql_1',  // Corresponde a ${COMPOSE_PROJECT_NAME}_mysql_1 (sin guiones en "tu_proyecto")
+  'host' => 'mysql',
 );
 /**
  * Desactivamos cacheos y CDN
@@ -43,7 +43,7 @@ $conf['theme_debug'] = TRUE; //activo theme_debug
  * Configuración de caché REDIS (por defecto)
  **/
 $conf['redis_client_interface'] = 'PhpRedis'; // Can be "Predis".
-$conf['redis_client_host']      = 'tuproyecto_redis_1';  // ${COMPOSE_PROJECT_NAME}_redis_1 (sin guiones en "tu_proyecto")
+$conf['redis_client_host']      = 'redis';
 $conf['lock_inc']               = 'sites/all/modules/contrib/redis/redis.lock.inc';
 $conf['path_inc']               = 'sites/all/modules/contrib/redis/redis.path.inc';
 $conf['cache_backends'][]       = 'sites/all/modules/contrib/redis/redis.autoload.inc';
@@ -65,7 +65,7 @@ $conf['file_temporary_path'] = '/tmp';
 //$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 //$conf['cache_class_cache_page'] = 'MemCacheDrupal';
 //$conf['memcache_servers'] = array(
-//  'tu_proyecto_memcached_1:11211' => 'default',  //${PROJECT_NAME}_memcached_1
+//  'memcached:11211' => 'default',  //memcached
 //);
 //$conf['memcache_bins'] = array('cache' => 'default');
 //$conf['memcache_persistent'] = TRUE;
