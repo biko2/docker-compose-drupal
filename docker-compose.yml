@@ -18,7 +18,7 @@ services:
     image: redis:${REDIS_VERSION}
     ports:
       - "6379:6379"
-  pma:
+  phpmyadmin:
     image: phpmyadmin/phpmyadmin
     depends_on:
       - mysql
@@ -65,8 +65,12 @@ services:
      - "${WEB_PORT_SSL}:443"
      - "2222:22"
     volumes:
-      - ./vhosts:/etc/apache2/sites-enabled
-      - ${WEB_ROOT}:/var/www/html
+     - ./vhosts:/etc/apache2/sites-enabled
+     - ./vhosts/certs/docker.crt:/etc/ssl/docker.crt
+     - ./vhosts/certs/docker.key:/etc/ssl/docker.key
+     - ${WEB_ROOT}:/var/www/html
+     #  - ./php7.0/php.ini:/etc/php/apache2/php.ini
+     #  - ./php7.0/xdebug.ini:/etc/php/7.0/apache2/conf.d/20-xdebug.ini
      #- ~/.drush:/root/.drush ## drush config
      #- ~/.ssh:/root/.ssh ## ssh config
     links:
